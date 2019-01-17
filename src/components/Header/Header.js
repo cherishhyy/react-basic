@@ -13,7 +13,7 @@ const MyHeader = (props) => {
 
     return (
         <div>
-          <h1>12356</h1>
+          <h1>{props.appTitle}</h1>
           <p className={assignedClasses.join(" ")}>Hi, React App</p>
         </div>
       )

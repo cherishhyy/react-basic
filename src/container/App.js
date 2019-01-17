@@ -109,7 +109,7 @@ class App extends Component {
         style={backgroundColor: 'green'}
         return (
             <div className="App">
-                <MyHeader persons={this.state.persons}/>
+                <MyHeader appTitle={this.props.appTitle} persons={this.state.persons}/>
                 {/* <header className="App-header">
                     <h1 className="App-title">Welcome to React</h1>
                     <span className={classes.join(" ")}>Hi React</span>
