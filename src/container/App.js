@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import Person from '../Person/Person'
+import Persons from '../components/Persons/Persons'
+import MyHeader from '../components/Header/Header'
 
+// 有状态组件
 class App extends Component {
 
     // state:用于改变组件内容状态的值（动态）
@@ -74,20 +76,26 @@ class App extends Component {
             backgroundColor: 'pink',
             padding: '8px'
         }
-        let person = null;
+        let persons = null;
         if (this.state.ShowPerson) {
-            person = (
-                <div>
+            persons = <Persons 
+            persons={this.state.persons}
+            clicked={this.deleteHandler}
+            changed={this.NameChange}
+            />
+            
+            // (
+            //     <div>
 
-                    {
-                        this.state.persons.map((person, index) => {
-                            return <Person
-                                InputChange={(event) => this.NameChange(event, person.id)}
-                                myclick={() => this.deleteHandler(index)} key={index} name={person.name} count={person.count}></Person>
-                        })
-                    }
-                </div>
-            )
+            //         {
+            //             this.state.persons.map((person, index) => {
+            //                 return <Person
+            //                     InputChange={(event) => this.NameChange(event, person.id)}
+            //                     myclick={() => this.deleteHandler(index)} key={index} name={person.name} count={person.count}></Persons>
+            //             })
+            //         }
+            //     </div>
+            // )
         }
         // 行间样式的修改
         // 动态添加类名
@@ -101,10 +109,11 @@ class App extends Component {
         style={backgroundColor: 'green'}
         return (
             <div className="App">
-                <header className="App-header">
+                <MyHeader persons={this.state.persons}/>
+                {/* <header className="App-header">
                     <h1 className="App-title">Welcome to React</h1>
                     <span className={classes.join(" ")}>Hi React</span>
-                </header>
+                </header> */}
                 {/* this.switchNameHandler()加上括号时，表示函数自动执行 */}
                 {/* <button onClick={this.switchNameHandler}>更改状态值</button> */}
                 <button style={style} onClick={this.switchNameHandler.bind(this, "missu")}>更改状态值</button>
@@ -120,7 +129,7 @@ class App extends Component {
                     //     </div> 
                     //    : null
                 }
-                {person}
+                {persons}
 
             </div>
         );
